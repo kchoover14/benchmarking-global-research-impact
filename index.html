@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kara C. Hoover">
+<meta name="dcterms.date" content="2026-02-18">
+
+<title>Mapping the Global COVID-19 Research Landscape</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="bibliometrics-covid19_files/libs/clipboard/clipboard.min.js"></script>
+<script src="bibliometrics-covid19_files/libs/quarto-html/quarto.js"></script>
+<script src="bibliometrics-covid19_files/libs/quarto-html/popper.min.js"></script>
+<script src="bibliometrics-covid19_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="bibliometrics-covid19_files/libs/quarto-html/anchor.min.js"></script>
+<link href="bibliometrics-covid19_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="bibliometrics-covid19_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="bibliometrics-covid19_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="bibliometrics-covid19_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="bibliometrics-covid19_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions">Research Questions</a></li>
+  <li><a href="#study-design" id="toc-study-design" class="nav-link" data-scroll-target="#study-design">Study Design</a></li>
+  <li><a href="#what-i-found" id="toc-what-i-found" class="nav-link" data-scroll-target="#what-i-found">What I Found</a>
+  <ul class="collapse">
+  <li><a href="#impact-weighted-research-output" id="toc-impact-weighted-research-output" class="nav-link" data-scroll-target="#impact-weighted-research-output">Impact-Weighted Research Output</a></li>
+  <li><a href="#collaboration-networks" id="toc-collaboration-networks" class="nav-link" data-scroll-target="#collaboration-networks">Collaboration Networks</a></li>
+  <li><a href="#research-impact-by-field" id="toc-research-impact-by-field" class="nav-link" data-scroll-target="#research-impact-by-field">Research Impact by Field</a></li>
+  </ul></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#key-insights" id="toc-key-insights" class="nav-link" data-scroll-target="#key-insights">Key Insights</a>
+  <ul class="collapse">
+  <li><a href="#a-custom-metric-can-outperform-standard-bibliometrics" id="toc-a-custom-metric-can-outperform-standard-bibliometrics" class="nav-link" data-scroll-target="#a-custom-metric-can-outperform-standard-bibliometrics">A Custom Metric Can Outperform Standard Bibliometrics</a></li>
+  <li><a href="#network-position-matters-as-much-as-output-volume" id="toc-network-position-matters-as-much-as-output-volume" class="nav-link" data-scroll-target="#network-position-matters-as-much-as-output-volume">Network Position Matters as Much as Output Volume</a></li>
+  <li><a href="#field-level-gaps-signal-investment-opportunities" id="toc-field-level-gaps-signal-investment-opportunities" class="nav-link" data-scroll-target="#field-level-gaps-signal-investment-opportunities">Field-Level Gaps Signal Investment Opportunities</a></li>
+  </ul></li>
+  <li><a href="#significance" id="toc-significance" class="nav-link" data-scroll-target="#significance">Significance</a></li>
+  <li><a href="#data-code" id="toc-data-code" class="nav-link" data-scroll-target="#data-code">Data &amp; Code</a></li>
+  <li><a href="#tools-technologies" id="toc-tools-technologies" class="nav-link" data-scroll-target="#tools-technologies">Tools &amp; Technologies</a></li>
+  <li><a href="#publication-status" id="toc-publication-status" class="nav-link" data-scroll-target="#publication-status">Publication Status</a></li>
+  <li><a href="#related-work" id="toc-related-work" class="nav-link" data-scroll-target="#related-work">Related Work</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Mapping the Global COVID-19 Research Landscape</h1>
+<p class="subtitle lead">Bibliometric analysis of publication impact, collaboration networks, and field contributions using Google BigQuery</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">bibliometrics | scientometrics | network analysis | geospatial analysis | SQL | Python | R | Google BigQuery | data visualization</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kara C. Hoover </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 18, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This project analyzes the global COVID-19 research landscape to support strategic funding and partnership decisions. Using publication metadata from the Dimensions COVID-19 dataset via Google BigQuery, I developed a novel <strong>Impact-Weighted Research Output metric</strong> that balances field-normalized citation impact with publication volume, then applied it to benchmark country-level performance, map international collaboration networks, and compare research contributions across disciplines. <strong>The US, UK, China, Australia, and the Netherlands consistently ranked highest, with the US surpassing global benchmarks across most fields; Math and Physical Sciences and Philosophy and Religious Studies showed the highest field-level impact despite lower publication volume than Biomedical and Clinical Sciences.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Project Context</strong></p>
+<p>This analysis was developed as an applied work sample for a research funding organization. It demonstrates end-to-end data science workflow from large-scale SQL data extraction through metric development, network analysis, and multi-format visualization.</p>
+</div>
+</div>
+</section>
+<section id="research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
+<ol type="1">
+<li>Which countries produce the highest-impact COVID-19 research when both citation quality and publication volume are accounted for?</li>
+<li>Which countries serve as central hubs in the international COVID-19 research collaboration network?</li>
+<li>How does research impact vary across disciplines, and where are the gaps between volume and influence?</li>
+</ol>
+</section>
+<section id="study-design" class="level2">
+<h2 class="anchored" data-anchor-id="study-design">Study Design</h2>
+<p><strong>Data Source:</strong> Dimensions COVID-19 publications dataset, accessed via Google BigQuery. Metadata includes author affiliations, field classifications, Field Citation Ratio (FCR), and publication counts.</p>
+<p><strong>Scope:</strong> Publications with non-null FCR values; single-author and single-country publications excluded from network analysis; top 1% of publications per field retained for collaboration network construction; countries with fewer than 10 publications filtered from country benchmarking to address small-sample outliers.</p>
+<p><strong>Analytical Approach:</strong></p>
+<ol type="1">
+<li>Metric Development — iterative construction and validation of a composite impact metric against three alternatives</li>
+<li>Country Benchmarking — global and country-level aggregation of the impact metric, choropleth mapping, top-5 comparison</li>
+<li>Network Analysis — co-authorship network construction, degree/betweenness/closeness centrality, top-10 hub identification</li>
+<li>Field Analysis — bubble chart visualization of average FCR vs.&nbsp;publication count by research field, US vs.&nbsp;global comparison</li>
+</ol>
+</section>
+<section id="what-i-found" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-found">What I Found</h2>
+<section id="impact-weighted-research-output" class="level3">
+<h3 class="anchored" data-anchor-id="impact-weighted-research-output">Impact-Weighted Research Output</h3>
+<p>The custom metric — <strong>normalized, field-corrected, volume-weighted FCR</strong> — outperformed three alternatives on all distributional properties (Table 1). The key contrast:</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Mean</th>
+<th>Std Dev</th>
+<th>Max</th>
+<th>Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Citation Rate</td>
+<td>11.98</td>
+<td>6.83</td>
+<td>68.50</td>
+<td>46.66</td>
+</tr>
+<tr class="even">
+<td>Average FCR</td>
+<td>4.63</td>
+<td>1.21</td>
+<td>6.33</td>
+<td>1.47</td>
+</tr>
+<tr class="odd">
+<td>Research Efficiency</td>
+<td>0.92</td>
+<td>4.37</td>
+<td>190.20</td>
+<td>19.08</td>
+</tr>
+<tr class="even">
+<td><strong>Impact-Weighted Research Output</strong></td>
+<td><strong>0.007</strong></td>
+<td><strong>0.010</strong></td>
+<td><strong>1.00</strong></td>
+<td><strong>0.0001</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The impact-weighted metric operates across n=68,166 field-country observations, compared to 235 for Citation Rate and just 23 for Average FCR, reflecting its greater granularity. Its variance (0.0001) is roughly 470,000× lower than Citation Rate variance (46.66), making it far more stable for cross-country comparison.</p>
+<p>After applying the minimum publication threshold of 10 to remove small-country outliers (e.g., Nauru, with 3 publications but an inflated metric of 0.31), the top five countries were <strong>China (0.36), UK (0.33), US (0.33), Australia (0.31), and Netherlands (0.28)</strong>. The US leads in raw publication volume (327,428 publications) — more than twice China’s output (155,934) — but China edges it on the composite metric, reflecting a higher average FCR (7.27 vs.&nbsp;6.37).</p>
+<p><strong>Interpretation:</strong> The metric surfaces a distinction that raw counts obscure: the US publishes more, but China and the UK generate comparable or higher field-normalized impact per unit of output.</p>
+</section>
+<section id="collaboration-networks" class="level3">
+<h3 class="anchored" data-anchor-id="collaboration-networks">Collaboration Networks</h3>
+<p>The US and UK dominate all three centrality measures by a wide margin. The US degree centrality (0.98) and closeness centrality (0.98) are nearly at the theoretical maximum of 1.0, compared to a network mean of 0.28 and 0.59 respectively. The UK is close behind (degree: 0.94, closeness: 0.95). China, India, and Canada cluster in a second tier (degree: 0.76–0.80), well above the mean but clearly separated from the US/UK.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Country</th>
+<th>Degree</th>
+<th>Betweenness</th>
+<th>Closeness</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Network Mean</td>
+<td>0.28</td>
+<td>0.006</td>
+<td>0.59</td>
+</tr>
+<tr class="even">
+<td>United States</td>
+<td>0.98</td>
+<td>0.092</td>
+<td>0.98</td>
+</tr>
+<tr class="odd">
+<td>United Kingdom</td>
+<td>0.94</td>
+<td>0.074</td>
+<td>0.95</td>
+</tr>
+<tr class="even">
+<td>China</td>
+<td>0.80</td>
+<td>0.033</td>
+<td>0.83</td>
+</tr>
+<tr class="odd">
+<td>India</td>
+<td>0.79</td>
+<td>0.034</td>
+<td>0.83</td>
+</tr>
+<tr class="even">
+<td>Canada</td>
+<td>0.76</td>
+<td>0.028</td>
+<td>0.81</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretation:</strong> The US and UK are not just prolific — they are structurally irreplaceable in the global network. Their betweenness centrality (0.09 and 0.07 respectively, vs.&nbsp;a mean of 0.006) means they broker connections across otherwise disconnected research communities. For a funder, these are high-leverage partnership nodes.</p>
+</section>
+<section id="research-impact-by-field" class="level3">
+<h3 class="anchored" data-anchor-id="research-impact-by-field">Research Impact by Field</h3>
+<p>No field achieved both high publication volume and high impact simultaneously. The highest-FCR fields globally were Mathematical Sciences (FCR: 5.74, n=10,585 publications), Philosophy and Religious Studies (FCR: 5.38, n=20,050), and Economics (FCR: 5.18, n=34,184). Biomedical and Clinical Sciences had by far the largest volume (470,377 publications) but a mid-range FCR (4.78).</p>
+<p>The US consistently matched or exceeded global benchmarks across fields; it drove the impact in both Mathematical Sciences and Philosophy and Religious Studies, and its Biomedical output — while outnumbered globally — had comparatively higher FCR.</p>
+<p><strong>Interpretation:</strong> Mathematical Sciences’ high FCR reflects computational epidemiology and modeling work that became rapidly and widely cited. The Social Sciences / Biology gap — high relevance, lower citation return — signals an underinvested area where targeted funding could shift the impact distribution.</p>
+</section>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<p><strong>Sample:</strong> Global COVID-19 publication dataset via Dimensions / Google BigQuery. Publication metadata extracted using SQL; data wrangled and analyzed in Python (Jupyter Notebooks); visualizations and tables rendered in R (Quarto).</p>
+<p><strong>Metric construction:</strong></p>
+<ul>
+<li>Field-level FCR normalization: each FCR value divided by the mean FCR of its research field to remove cross-field citation practice bias</li>
+<li>Log-transformation of publication count: <code>log1p()</code> applied to reduce skew from large-country outliers</li>
+<li>Weighted FCR: normalized FCR × log-transformed publication count</li>
+<li>Final normalization: weighted FCR divided by its maximum value, producing a 0–1 scale</li>
+</ul>
+<p><strong>Network analysis:</strong> Co-authorship edges constructed from multi-country publications; top 1% within-field publications retained; degree, betweenness, and closeness centrality calculated using <code>igraph</code> (R)</p>
+<p><strong>Visualization:</strong> Choropleth maps via <code>plotly</code> (R); bar charts and bubble charts via <code>ggplot2</code> + <code>plotly</code>; network maps as static output</p>
+<p><strong>R packages:</strong> <code>dplyr</code>, <code>gt</code>, <code>ggplot2</code>, <code>plotly</code>, <code>igraph</code>, <code>viridis</code>, <code>gridExtra</code>, <code>cowplot</code></p>
+</section>
+<section id="key-insights" class="level2">
+<h2 class="anchored" data-anchor-id="key-insights">Key Insights</h2>
+<section id="a-custom-metric-can-outperform-standard-bibliometrics" class="level3">
+<h3 class="anchored" data-anchor-id="a-custom-metric-can-outperform-standard-bibliometrics">A Custom Metric Can Outperform Standard Bibliometrics</h3>
+<p>Simple citation counts and average FCR both fail in large-scale cross-country comparisons — the former ignores field norms, the latter is skewed by outliers. The iterative process of testing, diagnosing, and refining four candidate metrics before selecting one demonstrates the importance of metric validation, not just metric selection.</p>
+<ul>
+<li>The final metric’s low variance makes it stable across countries with very different publication volumes</li>
+<li>Logarithmic transformation was essential for handling the order-of-magnitude difference between prolific and small-output countries</li>
+<li>Field-level normalization ensured that high-citation fields (e.g., biomedical) did not automatically dominate</li>
+</ul>
+</section>
+<section id="network-position-matters-as-much-as-output-volume" class="level3">
+<h3 class="anchored" data-anchor-id="network-position-matters-as-much-as-output-volume">Network Position Matters as Much as Output Volume</h3>
+<p>Countries like India and Canada have substantial publication counts but lower centrality scores than the US and UK. The distinction matters for funding strategy: central network nodes are not just productive, they are connectors.</p>
+<ul>
+<li>High betweenness centrality indicates bridge roles between otherwise disconnected research communities</li>
+<li>Eigenvector centrality reflects integration into high-influence research clusters, not just raw connectivity</li>
+<li>Collaboration networks are a distinct dimension of research strength from output volume alone</li>
+</ul>
+</section>
+<section id="field-level-gaps-signal-investment-opportunities" class="level3">
+<h3 class="anchored" data-anchor-id="field-level-gaps-signal-investment-opportunities">Field-Level Gaps Signal Investment Opportunities</h3>
+<p>The bubble chart analysis revealed that high-volume fields are not always high-impact fields, and vice versa.</p>
+<ul>
+<li>Math and Physical Sciences and Philosophy and Religious Studies: unexpectedly high FCR, likely driven by computational epidemiology and ethics/policy work that attracted outsized citation attention</li>
+<li>Social Sciences and Biology: positioned below the impact-volume diagonal despite their foundational role in pandemic response</li>
+<li>Targeted co-funding in underperforming but high-relevance fields could yield disproportionate returns</li>
+</ul>
+</section>
+</section>
+<section id="significance" class="level2">
+<h2 class="anchored" data-anchor-id="significance">Significance</h2>
+<p>This project demonstrates that:</p>
+<ol type="1">
+<li>Publication data alone, properly structured and field-normalized, can generate actionable intelligence for research funders</li>
+<li>Network analysis and bibliometrics together provide complementary views of research influence that neither approach captures alone</li>
+<li>A reproducible, scalable pipeline built in BigQuery + Python + R can process large international datasets and deliver policy-relevant outputs</li>
+</ol>
+<p>These findings contribute to understanding:</p>
+<ul>
+<li>Science of science and bibliometrics methodology</li>
+<li>Strategic research funding and international partnership development</li>
+<li>COVID-19 research landscape and pandemic preparedness investment</li>
+<li>Data pipeline design for large-scale public research datasets</li>
+</ul>
+</section>
+<section id="data-code" class="level2">
+<h2 class="anchored" data-anchor-id="data-code">Data &amp; Code</h2>
+<p><strong>Repository:</strong> <a href="https://github.com/kchoover14/Bibliometrics-COVID19-Research">github.com/kchoover14/Bibliometrics-COVID19-Research</a></p>
+<p><strong>Available:</strong></p>
+<ul>
+<li>GBQ scripts</li>
+<li>Processed CSV tables (exported from GBQ)</li>
+<li>Figures (exported from GBQ/Python)</li>
+<li>Rendered HTML output</li>
+</ul>
+<p><strong>Reproducible workflow:</strong></p>
+<ol type="1">
+<li><code>bubble_chart_data_create.ipynb</code> — BigQuery SQL extraction and Python preprocessing; outputs CSVs for downstream analysis</li>
+<li><code>Final analysis.ipynb</code> — metric construction, validation, and network statistics in Python</li>
+<li><code>stimulating_cv19.qmd</code> — R-based visualization, table rendering, and final HTML output</li>
+</ol>
+</section>
+<section id="tools-technologies" class="level2">
+<h2 class="anchored" data-anchor-id="tools-technologies">Tools &amp; Technologies</h2>
+<ul>
+<li><strong>Python</strong> for data extraction, metric construction, and network statistics</li>
+<li><strong>SQL / Google BigQuery</strong> for large-scale data access and initial aggregation</li>
+<li><strong>R</strong> for visualization and report rendering</li>
+<li><strong>Packages:</strong> <code>dplyr</code>, <code>gt</code>, <code>ggplot2</code>, <code>plotly</code>, <code>igraph</code>, <code>viridis</code>, <code>cowplot</code>, <code>gridExtra</code></li>
+<li><strong>Models / Methods:</strong> Field Citation Ratio normalization, log-transformation, network centrality (degree, betweenness, closeness, eigenvector)</li>
+<li><strong>Visualization:</strong> Interactive choropleth maps (Plotly), bubble charts, bar charts with error bars, static network graphs</li>
+</ul>
+</section>
+<section id="publication-status" class="level2">
+<h2 class="anchored" data-anchor-id="publication-status">Publication Status</h2>
+<p><strong>Manuscript:</strong> Not submitted — developed as an applied analytical work sample</p>
+</section>
+<section id="related-work" class="level2">
+<h2 class="anchored" data-anchor-id="related-work">Related Work</h2>
+<ul>
+<li>Policy &amp; Science: <a href="https://karachoover.quarto.pub/big-data--ml-benchmarking-for-research-impact/">Global R&amp;D Leadership Forecasting and Policy Modelling</a></li>
+<li>Policy &amp; Science: <a href="https://karachoover.quarto.pub/time-series-models-forecast-shift-in-global-rd-leadership-from-west-to-emerging-regions-as-populations-age/">Time Series Models — Global R&amp;D Leadership Shift</a></li>
+<li>Network Analysis: <a href="https://karachoover.quarto.pub/the-presence-of-women-in-governance-is-positively-correlated-with-womens-empowerment-across-regions/">Women in Governance &amp; Women’s Empowerment</a></li>
+</ul>
+<hr>
+<p><em>This analysis illustrates how publicly available research metadata, combined with custom metric design and network science methods, can support evidence-based funding strategy and international partnership development at scale.</em></p>
+<p>Contact: kchoover@proton.me</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
