@@ -78,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 <h1 class="title">Mapping the Global COVID-19 Research Landscape</h1>
 <p class="subtitle lead">Bibliometric analysis of publication impact, collaboration networks, and field contributions using Google BigQuery</p>
   <div class="quarto-categories">
-    <div class="quarto-category">bibliometrics | scientometrics | network analysis | geospatial analysis | SQL | Python | R | Google BigQuery | data visualization</div>
+    <div class="quarto-category">bibliometrics | scientometrics | network analysis | geospatial analysis | SQL | Python | Google BigQuery | data visualization</div>
   </div>
   </div>
 
@@ -122,7 +122,7 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Project Context</strong></p>
-<p>This analysis was developed as an applied work sample for a research funding organization. It demonstrates end-to-end data science workflow from large-scale SQL data extraction through metric development, network analysis, and multi-format visualization.</p>
+<p>This analysis was developed as a research landscape work sample. It demonstrates end-to-end data science workflow with research design (metric development), big data handling (Google BigQuery), SQL ETL workflow, and Python analytical skills for geospatial analysis and multi-format data visualization.</p>
 </div>
 </div>
 </section>
@@ -201,6 +201,18 @@ Note
 </table>
 <p>The impact-weighted metric operates across n=68,166 field-country observations, compared to 235 for Citation Rate and just 23 for Average FCR, reflecting its greater granularity. Its variance (0.0001) is roughly 470,000× lower than Citation Rate variance (46.66), making it far more stable for cross-country comparison.</p>
 <p>After applying the minimum publication threshold of 10 to remove small-country outliers (e.g., Nauru, with 3 publications but an inflated metric of 0.31), the top five countries were <strong>China (0.36), UK (0.33), US (0.33), Australia (0.31), and Netherlands (0.28)</strong>. The US leads in raw publication volume (327,428 publications) — more than twice China’s output (155,934) — but China edges it on the composite metric, reflecting a higher average FCR (7.27 vs.&nbsp;6.37).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="map-static-benchmarkMetric.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1. Global distribution of the Impact-Weighted Research Output metric. Darker blue indicates higher normalized weighted FCR. The US, UK, China, and Australia are the most prominent.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot-benchmarkComparison.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 2. Top 5 countries by Impact-Weighted Research Output with standard deviation error bars. The dashed green line marks the global mean. All five countries substantially exceed the global benchmark.</figcaption>
+</figure>
+</div>
 <p><strong>Interpretation:</strong> The metric surfaces a distinction that raw counts obscure: the US publishes more, but China and the UK generate comparable or higher field-normalized impact per unit of output.</p>
 </section>
 <section id="collaboration-networks" class="level3">
@@ -254,13 +266,25 @@ Note
 </tr>
 </tbody>
 </table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="map-static-network.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3. Global COVID-19 research collaboration network. Node size is proportional to degree centrality; edge thickness reflects collaboration strength. The US, UK, and Western Europe form the densest hub.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plot-networkComparison.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 4. Centrality measures (degree, betweenness, closeness) for the top 5 countries compared to the network mean. The US and UK lead across all three measures by a wide margin.</figcaption>
+</figure>
+</div>
 <p><strong>Interpretation:</strong> The US and UK are not just prolific — they are structurally irreplaceable in the global network. Their betweenness centrality (0.09 and 0.07 respectively, vs.&nbsp;a mean of 0.006) means they broker connections across otherwise disconnected research communities. For a funder, these are high-leverage partnership nodes.</p>
 </section>
 <section id="research-impact-by-field" class="level3">
 <h3 class="anchored" data-anchor-id="research-impact-by-field">Research Impact by Field</h3>
-<p>No field achieved both high publication volume and high impact simultaneously. The highest-FCR fields globally were Mathematical Sciences (FCR: 5.74, n=10,585 publications), Philosophy and Religious Studies (FCR: 5.38, n=20,050), and Economics (FCR: 5.18, n=34,184). Biomedical and Clinical Sciences had by far the largest volume (470,377 publications) but a mid-range FCR (4.78).</p>
-<p>The US consistently matched or exceeded global benchmarks across fields; it drove the impact in both Mathematical Sciences and Philosophy and Religious Studies, and its Biomedical output — while outnumbered globally — had comparatively higher FCR.</p>
-<p><strong>Interpretation:</strong> Mathematical Sciences’ high FCR reflects computational epidemiology and modeling work that became rapidly and widely cited. The Social Sciences / Biology gap — high relevance, lower citation return — signals an underinvested area where targeted funding could shift the impact distribution.</p>
+<p>No field achieved both high publication volume and high impact simultaneously. The highest-FCR fields globally were Math and Physical Sciences (FCR: 5.74, n=10,585 publications), Philosophy and Religious Studies (FCR: 5.38, n=20,050), and Economics (FCR: 5.18, n=34,184). Biomedical and Clinical Sciences had by far the largest volume (470,377 publications) but a mid-range FCR (4.78).</p>
+<p>The US consistently matched or exceeded global benchmarks across fields; it drove the impact in both Math and Physical Sciences and Philosophy and Religious Studies, and its Biomedical output — while outnumbered globally — had comparatively higher FCR.</p>
+<p><strong>Interpretation:</strong> The high Math and Physical Sciences FCR reflects computational epidemiology and modeling work that became rapidly and widely cited. The Social Sciences / Biology gap — high relevance, lower citation return — signals an under-invested area where targeted funding could shift the impact distribution.</p>
 </section>
 </section>
 <section id="methods" class="level2">
