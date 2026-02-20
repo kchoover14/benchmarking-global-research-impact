@@ -11,4 +11,4 @@ Standard bibliometric measures -- raw citation counts and average Field Citation
 
 ## Full Analysis
 
-For narrative, figures, study design, and methodology see the [portfolio page](https://kchoover14.github.io/Bibliometrics-COVID19-Research/).
+For narrative, figures, study design, and methodology see the [portfolio page]([https://kchoover14.github.io/Bibliometrics-COVID19-Research/](https://kchoover14.github.io/benchmarking-global-research-impact/).
