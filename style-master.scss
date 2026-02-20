@@ -1,0 +1,169 @@
+/*-- scss:defaults --*/
+
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+// Shared typography
+$font-family-sans-serif: 'Inter', system-ui, sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.7;
+
+/*-- scss:rules --*/
+
+// ============================================================
+// SHARED BASE STYLES - apply to both themes
+// ============================================================
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.6rem; padding-bottom: 0.3rem; }
+h3 { font-size: 1.3rem; }
+
+#overview {
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+}
+
+pre code { background-color: transparent; }
+
+code {
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.tbl-cap, .figure-caption, figcaption {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+table { border-collapse: collapse; width: 100%; }
+th { color: white; padding: 0.5rem 1rem; }
+td { padding: 0.5rem 1rem; }
+
+.quarto-title .quarto-categories .quarto-category,
+.quarto-category, .category,
+.quarto-category.btn, .btn.quarto-category,
+.quarto-listing-category, .quarto-listing-category.btn {
+  border-radius: 4px !important;
+  padding: 0.2em 0.6em !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+  text-transform: capitalize !important;
+}
+
+// ============================================================
+// BLUES PALETTE - applied/project pages
+// Usage: body-classes: blues
+// ============================================================
+
+.blues {
+
+  body, & { color: #2C3E50; }
+
+  h1, h2 { color: #004080; }
+  h2 { border-bottom: 1px solid #d0dce8; }
+  h3, h4, h5, h6 { color: #1B4F72; }
+
+  a { color: #0056b3; }
+  a:hover { color: #004080; }
+
+  #overview { border-top: 6px solid #004080; }
+
+  pre.sourceCode {
+    border-left: 3px solid #008080;
+    background-color: #f8f9fa;
+  }
+
+  code {
+    color: #004080;
+    background-color: #f0f4f8;
+  }
+
+  pre code { color: #2C3E50; }
+
+  .tbl-cap, .figure-caption, figcaption { color: #1B4F72; }
+
+  .callout { border-left: 4px solid #004080 !important; background-color: #f0f4f8; }
+  .callout.callout-note { border-left-color: #004080 !important; }
+  .callout-header { background-color: #d0dce8 !important; color: #004080 !important; }
+  .callout-icon::before { color: #004080 !important; }
+
+  th { background-color: #004080; }
+  td { border-bottom: 1px solid #d0dce8; }
+  tr:nth-child(even) { background-color: #f0f4f8; }
+
+  .quarto-title .quarto-categories .quarto-category,
+  .quarto-category, .category,
+  .quarto-category.btn, .btn.quarto-category,
+  .quarto-listing-category, .quarto-listing-category.btn {
+    color: #2C3E50 !important;
+    background-color: #f0f4f8 !important;
+    border-left: 3px solid #004080 !important;
+  }
+
+  .sidebar nav a { color: #004080; }
+  .sidebar nav a:hover { color: #1B4F72; }
+}
+
+// ============================================================
+// EGGPLANT PALETTE - publication/academic pages
+// Usage: body-classes: eggplant
+// ============================================================
+
+.eggplant {
+
+  body, & { color: #2C2C2C; }
+
+  h1, h2 { color: #5a465e; }
+  h2 { border-bottom: 1px solid #c9b8d0; }
+  h3, h4, h5, h6 { color: #4a3850; }
+
+  a { color: #5a465e; }
+  a:hover { color: #4a3850; }
+
+  #overview { border-top: 6px solid #5a465e; }
+
+  pre.sourceCode {
+    border-left: 3px solid #5a465e;
+    background-color: #faf9fb;
+  }
+
+  code {
+    color: #5a465e;
+    background-color: #faf9fb;
+  }
+
+  pre code { color: #2C2C2C; }
+
+  .tbl-cap, .figure-caption, figcaption { color: #5a465e; }
+
+  .callout { border-left: 4px solid #5a465e !important; background-color: #faf9fb; }
+  .callout.callout-note { border-left-color: #5a465e !important; }
+  .callout-header { background-color: #ede8f0 !important; color: #2C2C2C !important; }
+  .callout-icon::before { color: #5a465e !important; }
+
+  th { background-color: #5a465e; }
+  td { border-bottom: 1px solid #c9b8d0; }
+  tr:nth-child(even) { background-color: #faf9fb; }
+
+  .quarto-title .quarto-categories .quarto-category,
+  .quarto-category, .category,
+  .quarto-category.btn, .btn.quarto-category,
+  .quarto-listing-category, .quarto-listing-category.btn {
+    color: #2C2C2C !important;
+    background-color: #faf9fb !important;
+    border-left: 3px solid #5a465e !important;
+  }
+
+  .sidebar nav a { color: #5a465e; }
+  .sidebar nav a:hover { color: #4a3850; }
+}
