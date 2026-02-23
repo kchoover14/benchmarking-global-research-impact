@@ -7,9 +7,9 @@ The [portfolio page](https://kchoover14.github.io/benchmarking-global-research-i
 
 ### Tools & Technologies
 
-- **Languages:** Python | R | SQL
+- **Languages:** Python | SQL
 - **Tools:** Google BigQuery | Jupyter
-- **Packages:** `dplyr`, `gt`, `ggplot2`, `plotly`, `igraph`, `viridis`, `cowplot`, `gridExtra`
+- **Packages:** `google-cloud-bigquery`, `pandas`, `numpy`, `plotly`, `networkx`, `pandas-gbq`, `bigframes`
 - **Data:** `covid-19-dimensions-ai.data.publications` -- freely accessible via Google BigQuery sandbox
 
 ### Expertise
