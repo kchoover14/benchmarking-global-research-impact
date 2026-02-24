@@ -60,7 +60,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#research-impact-by-field" id="toc-research-impact-by-field" class="nav-link" data-scroll-target="#research-impact-by-field">Research Impact by Field</a></li>
   </ul></li>
   <li><a href="#study-design" id="toc-study-design" class="nav-link" data-scroll-target="#study-design">Study Design</a></li>
-  <li><a href="#data-code" id="toc-data-code" class="nav-link" data-scroll-target="#data-code">Data &amp; Code</a></li>
+  <li><a href="#project-resources" id="toc-project-resources" class="nav-link" data-scroll-target="#project-resources">Project Resources</a></li>
   <li><a href="#tools-technologies" id="toc-tools-technologies" class="nav-link" data-scroll-target="#tools-technologies">Tools &amp; Technologies</a></li>
   <li><a href="#expertise" id="toc-expertise" class="nav-link" data-scroll-target="#expertise">Expertise</a></li>
   </ul>
@@ -194,19 +194,11 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <p>The impact-weighted metric operates across n=68,166 field-country observations, compared to 235 for Citation Rate and just 23 for Average FCR. Its variance (0.0001) is roughly 470,000x lower than Citation Rate variance (46.66), making it far more stable for cross-country comparison. After applying a minimum publication threshold of 10 to remove small-country outliers, the top five countries were China (0.36), UK (0.33), US (0.33), Australia (0.31), and Netherlands (0.28).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="map-static-benchmarkMetric.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 1. Global distribution of the Impact-Weighted Research Output metric. Darker blue indicates higher normalized weighted FCR.</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="plot-benchmarkComparison.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 2. Top 5 countries by Impact-Weighted Research Output with standard deviation error bars. The dashed green line marks the global mean.</figcaption>
-</figure>
-</div>
-<p><strong>Interpretation:</strong> The metric surfaces a distinction raw counts obscure: the US publishes more, but China and the UK generate comparable or higher field-normalized impact per unit of output. Simple citation counts and average FCR both fail in large-scale cross-country comparisons – the former ignores field norms, the latter is skewed by outliers. The iterative process of testing and refining four candidate metrics before selecting one illustrates the importance of metric validation, not just metric selection.</p>
+<p><strong>Figure 1. Global distribution of the Impact-Weighted Research Output metric. Darker blue indicates higher normalized weighted FCR.</strong></p>
+<p><img src="map-static-benchmarkMetric.png" class="img-fluid"></p>
+<p><strong>Interpretation:</strong> For Figures 1 and 2, the metric surfaces a distinction that raw counts obscure: the US publishes more, but China and the UK generate comparable or higher field-normalized impact per unit of output. Simple citation counts and average FCR both fail in large-scale cross-country comparisons – the former ignores field norms, the latter is skewed by outliers. The iterative process of testing and refining four candidate metrics before selecting one illustrates the importance of metric validation, not just metric selection.</p>
+<p><strong>Figure 2. Top 5 countries by Impact-Weighted Research Output with standard deviation error bars. The dashed green line marks the global mean.</strong></p>
+<p><img src="plot-benchmarkComparison.png" class="img-fluid"></p>
 </section>
 <section id="collaboration-networks" class="level3">
 <h3 class="anchored" data-anchor-id="collaboration-networks">Collaboration Networks</h3>
@@ -259,18 +251,10 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="map-static-network.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 3. Global research collaboration network. Node size proportional to degree centrality; edge thickness reflects collaboration strength.</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="plot-networkComparison.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 4. Centrality measures for the top 5 countries compared to the network mean. The US and UK lead across all three measures by a wide margin.</figcaption>
-</figure>
-</div>
+<p><strong>Figure 3. Global research collaboration network. Node size proportional to degree centrality; edge thickness reflects collaboration strength.</strong></p>
+<p><img src="map-static-network.png" class="img-fluid"></p>
+<p><strong>Figure 4. Centrality measures for the top 5 countries compared to the network mean. The US and UK lead across all three measures by a wide margin.</strong></p>
+<p><img src="plot-networkComparison.png" class="img-fluid"></p>
 <p><strong>Interpretation:</strong> The US and UK are not just prolific – they are structurally irreplaceable. Their betweenness centrality means they broker connections across otherwise disconnected research communities. Countries like India and Canada have substantial publication counts but lower centrality scores – a meaningful distinction for landscape assessment: central network nodes are connectors, not just producers. High eigenvector centrality reflects integration into high-influence clusters, not just raw connectivity.</p>
 </section>
 <section id="research-impact-by-field" class="level3">
@@ -300,26 +284,35 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <hr>
 </section>
-<section id="data-code" class="level2">
-<h2 class="anchored" data-anchor-id="data-code">Data &amp; Code</h2>
-<p><strong>Public dataset:</strong> <code>covid-19-dimensions-ai.data.publications</code> – freely accessible via Google BigQuery sandbox</p>
-<p><strong>Repository:</strong> <a href="https://github.com/kchoover14/Bibliometrics-COVID19-Research">github.com/kchoover14/Bibliometrics-COVID19-Research</a></p>
-<p><strong>Available:</strong></p>
+<section id="project-resources" class="level2">
+<h2 class="anchored" data-anchor-id="project-resources">Project Resources</h2>
+<p><strong>Repository:</strong> <a href="https://github.com/kchoover14/benchmarking-global-research-impact">https://github.com/kchoover14/benchmarking-global-research-impact</a></p>
+<p><strong>Data:</strong></p>
 <ul>
-<li>GBQ SQL scripts</li>
-<li>Processed CSV tables (exported from GBQ)</li>
-<li>Figures (exported from GBQ/Python)</li>
-<li>Rendered HTML output</li>
+<li><code>covid-19-dimensions-ai.data.publications</code> – freely accessible via Google BigQuery sandbox</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>GBQ scripts: analysis.ipynb, bubble chart.ipynb</li>
+</ul>
+<p><strong>Project Artifacts</strong></p>
+<ul>
+<li>Source and processed data files (n=4)</li>
+<li>Summary tables exported from GBQ (n=3)</li>
+<li>Figures (n=4)</li>
+</ul>
+<p><strong>License:</strong></p>
+<ul>
+<li>Code and scripts © Kara C. Hoover, licensed under the <a href="LICENSE">MIT License</a>.</li>
+<li>Data, figures, and written content © Kara C. Hoover, licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</li>
 </ul>
 <hr>
 </section>
 <section id="tools-technologies" class="level2">
 <h2 class="anchored" data-anchor-id="tools-technologies">Tools &amp; Technologies</h2>
-<ul>
-<li><strong>Languages:</strong> Python | SQL</li>
-<li><strong>Tools:</strong> Google BigQuery | Jupyter</li>
-<li><strong>Packages:</strong> <code>google-cloud-bigquery</code>, <code>pandas</code>, <code>numpy</code>, <code>plotly</code>, <code>networkx</code>, <code>pandas-gbq</code>, <code>bigframes</code></li>
-</ul>
+<p><strong>Languages:</strong> Python | SQL</p>
+<p><strong>Tools:</strong> Google BigQuery | Jupyter</p>
+<p><strong>Packages:</strong> google-cloud-bigquery | pandas | numpy | plotly | networkx | pandas-gbq | bigframes</p>
 <hr>
 </section>
 <section id="expertise" class="level2">
