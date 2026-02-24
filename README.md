@@ -16,3 +16,7 @@ The [portfolio page](https://kchoover14.github.io/benchmarking-global-research-i
 
 End-to-end research intelligence pipeline design -- from metric development and validation through network analysis to policy-relevant output for non-technical stakeholders.
 
+### LICENSE
+
+- Data, figures, and written content © Kara C. Hoover, licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+- Code and scripts © Kara C. Hoover, licensed under the [MIT License](LICENSE).
